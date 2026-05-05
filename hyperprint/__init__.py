@@ -13,7 +13,7 @@ Public API:
 
 import sys
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 
 from .settings import Settings, Palette, Glyphs, Layout, ASCII_GLYPHS, DEFAULT
 from .render import render_value
@@ -21,6 +21,7 @@ from .frame import frame, content_available_width
 from .exception import build_report, fallback_text
 from .report import ExceptionReport, ExceptionInfo, FrameInfo
 from .banner import print_banner, BannerLevel, LEVELS as BANNER_LEVELS
+from .title import print_title
 from .ansi import strip_ansi
 
 
@@ -29,6 +30,7 @@ __all__ = [
     "print_info",
     "print_exception",
     "print_banner",
+    "print_title",
     "Settings",
     "Palette",
     "Glyphs",

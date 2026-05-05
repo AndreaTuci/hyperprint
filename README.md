@@ -93,6 +93,21 @@ except Exception:
         my_logger.error(report.plain, extra={"err.id": report.fingerprint})
 ```
 
+### Block-letter titles
+
+For announcement headlines, render text as a 5-row block-letter title:
+
+```python
+from hyperprint import print_title
+
+print_title("HYPERPRINT", color="bright_magenta", align="center")
+print_title("v0.1.2", color="bold bright_yellow")
+```
+
+Built-in font covers `A-Z`, `0-9`, and common punctuation. Letters are
+uppercased automatically; unknown characters become blanks. `align` is
+`"left"`, `"center"`, or `"right"` relative to the terminal width.
+
 ### Emoji banners
 
 For lines that really need to jump out of the log stream:
