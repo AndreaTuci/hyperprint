@@ -1,5 +1,9 @@
 # hyperprint
 
+[![PyPI version](https://img.shields.io/pypi/v/hyperprint.svg)](https://pypi.org/project/hyperprint/)
+[![Python versions](https://img.shields.io/pypi/pyversions/hyperprint.svg)](https://pypi.org/project/hyperprint/)
+[![License: MIT](https://img.shields.io/pypi/l/hyperprint.svg)](https://github.com/AndreaTuci/hyperprint/blob/main/LICENSE)
+
 Pretty structured printing for Python — colored, framed, never truncated.
 Zero runtime dependencies.
 
@@ -8,6 +12,18 @@ exceptions in real applications. Output is a single self-contained box drawn
 with Unicode glyphs, dimensioned to the terminal but always large enough to
 fit the content. Nested data is rendered as aligned columns instead of
 nested ASCII tables, so deeply structured payloads stay readable.
+
+## What's in the box
+
+| function | what it does |
+| --- | --- |
+| `print_info(data, heading=None)` | structured data → framed colored box |
+| `print_exception()` | the active exception → framed traceback + `ExceptionReport` |
+| `print_banner(message, level=…)` | emoji bar across the terminal — divider or attention mark |
+| `print_title(text, color=…)` | 5-row block-letter ASCII headline |
+
+All four functions write synchronously to stdout (so they stay in order with
+plain `print()` calls) and return their rendered string for further use.
 
 ## Why
 
@@ -31,7 +47,12 @@ It also offers a colored `print_exception` that:
 pip install hyperprint
 ```
 
-Requires Python 3.10+.
+Requires Python 3.10+. No runtime dependencies.
+
+```python
+# Curated public surface — safe to star-import:
+from hyperprint import *
+```
 
 ## Usage
 
@@ -101,7 +122,7 @@ For announcement headlines, render text as a 5-row block-letter title:
 from hyperprint import print_title
 
 print_title("HYPERPRINT", color="bright_magenta", align="center")
-print_title("v0.1.2", color="bold bright_yellow")
+print_title("DEPLOY", color="bold bright_red")
 ```
 
 Built-in font covers `A-Z`, `0-9`, and common punctuation. Letters are
@@ -171,12 +192,23 @@ s = Settings(layout=Layout(locals_filter=None))
 
 ## Demo
 
-A self-contained example with deeply nested data, long strings, and a chained
-exception is in [`examples/demo.py`](examples/demo.py):
+A self-contained example covering all four functions — deeply nested data
+with long strings, a chained exception, banners, and a title — lives in
+[`examples/demo.py`](examples/demo.py):
 
 ```bash
+git clone https://github.com/AndreaTuci/hyperprint
+cd hyperprint
+uv venv && source .venv/bin/activate
+uv pip install -e .
 python examples/demo.py
 ```
+
+## Versioning
+
+`hyperprint` follows [SemVer](https://semver.org/). Versions are released by
+tagging on GitHub; the [PyPI page](https://pypi.org/project/hyperprint/)
+always points at the latest stable release.
 
 ## License
 
