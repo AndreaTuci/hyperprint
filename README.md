@@ -93,6 +93,30 @@ except Exception:
         my_logger.error(report.plain, extra={"err.id": report.fingerprint})
 ```
 
+### Emoji banners
+
+For lines that really need to jump out of the log stream:
+
+```python
+from hyperprint import print_banner
+
+print_banner("Deploy started", level="rocket")        # 🚀 …  Deploy started  … 🚀
+print_banner(level="warning")                          # 🟡 divider, full width
+print_banner("PROD INCIDENT", level="critical", style="sandwich")
+```
+
+Built-in levels: `info` 💡, `success` ✅, `warning` 🟡, `error` 🚩,
+`critical` 🚨, `debug` 🐞, `note` 📝, `fire` 🔥, `rocket` 🚀, `party` 🎉,
+`lock` 🔒, `star` ⭐, `sparkles` ✨, `ok` ✅, `ko` ❌. Or pass any emoji
+string directly as `level`, or build your own:
+
+```python
+from hyperprint import print_banner, BannerLevel
+
+mine = BannerLevel("🦄", "bright_magenta")
+print_banner("Release shipped", level=mine)
+```
+
 ## Customization
 
 All visual choices flow through a single `Settings` object.

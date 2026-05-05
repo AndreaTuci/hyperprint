@@ -102,6 +102,11 @@ class Layout:
     locals_filter: Optional[Callable[[str, Any], bool]] = _default_locals_filter
     show_locals_only_on_last_frame: bool = True
 
+    # Banners. Most pictographic emoji render 2 columns wide on monospace
+    # terminals; tune if your shell renders them differently.
+    banner_emoji_width: int = 2
+    banner_message_padding: int = 2
+
 
 @dataclass(frozen=True)
 class Settings:

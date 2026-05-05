@@ -1,6 +1,6 @@
 import datetime
 
-from hyperprint import print_info, print_exception
+from hyperprint import print_info, print_exception, print_banner
 
 
 # --- Big, deeply nested test payload ----------------------------------------
@@ -119,16 +119,19 @@ def boot():
 
 
 if __name__ == "__main__":
-    print("BEFORE print_info")
+    print_banner("Deploy started", level="rocket")
     print_info(report, heading="Daily Report")
-    print("AFTER print_info")
+    print_banner("Daily report ready", level="success")
 
-    print("BEFORE print_exception")
+    print_banner(level="warning")  # divider only — full-width yellow row
+
+    print_banner("PRODUCTION INCIDENT", level="critical", style="sandwich")
+
     try:
         boot()
     except Exception:
         report = print_exception()
-    print("AFTER print_exception")
+    print_banner("Incident captured", level="error")
 
     if report is not None:
         print()
